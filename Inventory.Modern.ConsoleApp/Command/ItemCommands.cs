@@ -1,5 +1,5 @@
-﻿using CLI.Core.Lib;
-using CommandDotNet;
+﻿using CommandDotNet;
+using CRUDCommandHelper;
 using Inventory.Modern.Lib;
 
 namespace Inventory.Modern.ConsoleApp;

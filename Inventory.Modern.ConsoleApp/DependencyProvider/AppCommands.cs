@@ -1,11 +1,12 @@
-using CLI.Core.Lib;
-using Core.Lib;
+using CRUDCommandHelper;
+using DIHelper.Unity;
 using Inventory.Modern.Lib;
 using Unity;
 
 namespace Inventory.Modern.ConsoleApp;
 
-public class AppCommands : UnityDependencyProvider
+public class AppCommands 
+    : UnityDependencySet
 {
     public AppCommands(
         IUnityContainer container) 
@@ -13,7 +14,7 @@ public class AppCommands : UnityDependencyProvider
     {
     }
 
-    public override void RegisterDependencies()
+    public override void Register()
     {
         Container.RegisterSingleton<IReadCommand<ItemArgFilter>, ItemReadCommand>();
         Container.RegisterSingleton<IReadCommand<ItemCategoryArgFilter>, ItemCategoryReadCommand>();

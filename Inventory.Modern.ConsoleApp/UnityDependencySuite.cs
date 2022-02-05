@@ -1,29 +1,30 @@
-﻿using CLI.Core;
+﻿using DIHelper;
 using Inventory.Modern.Lib;
 using Unity;
 
 namespace Inventory.Modern.ConsoleApp;
 
-public class UnityDependencyCollection : CLI.Core.Lib.UnityDependencyCollection
+public class UnityDependencySuite 
+    : DIHelper.Unity.UnityDependencySuite
 {
-    public UnityDependencyCollection(
+    public UnityDependencySuite(
         IUnityContainer container)
         : base(container)
     {
     }
 
     protected override void RegisterDatabase() =>
-        RegisterDependencyProvider<AppDatabase>();
+        RegisterSet<AppDatabase>();
 
     protected override void RegisterConsoleOutput() =>
-        RegisterDependencyProvider<AppOutput>();
+        RegisterSet<AppOutput>();
 
     protected override void RegisterDataMappings() =>
-        RegisterDependencyProvider<AppMappings>();
+        RegisterSet<AppMappings>();
 
     protected override void RegisterCommands()
     {
-        RegisterDependencyProvider<AppCommands>();
+        RegisterSet<AppCommands>();
     }
 
     protected override void RegisterProgram() =>
