@@ -14,14 +14,16 @@
     <PackageReference Include="CommandDotNet" Version="6.1.0-alpha.repl" />
     <PackageReference Include="CommandDotNet.FluentValidation" Version="5.0.1" />
     <PackageReference Include="CommandDotNet.NameCasing" Version="3.0.1" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    	<Reference Include="Inventory.Data">
-			<HintPath>..\..\..\Build\Inventory-data\Inventory.Data\Inventory.Data.dll</HintPath>
+	
+	<!-- Release References -->
+  	<ItemGroup>
+		<Reference Include="Inventory.Data">
+			<HintPath>..\..\..\Build\inventory-data\Inventory.Data\Inventory.Data.dll</HintPath>
 		</Reference>
 		<Reference Include="Inventory.Modern.Lib">
-			<HintPath>..\..\..\Build\Inventory-modern-lib\Inventory.Modern.Lib\Inventory.Modern.Lib.dll</HintPath>
+			<HintPath>..\..\..\Build\inventory-modern-lib\Inventory.Modern.Lib\Inventory.Modern.Lib.dll</HintPath>
 		</Reference>
 		<Reference Include="CLIHelper">
 			<HintPath>..\..\..\Build\cli-helper\CLIHelper\CLIHelper.dll</HintPath>
@@ -50,10 +52,23 @@
 		<Reference Include="CommandDotNetHelper">
 			<HintPath>..\..\..\Build\commanddotnet-helper\CommandDotNet.Helper\CommandDotNet.Helper.dll</HintPath>
 		</Reference>
-  </ItemGroup>
+  	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DependencyProvider\" />
-  </ItemGroup>
+	<!-- Debug References -->
+	<!-- <ItemGroup>
+		<Reference Include="Inventory.Data">
+			<HintPath>..\..\inventory-data\Inventory.Data\bin\Debug\net6.0\Inventory.Data.dll</HintPath>
+		</Reference>
+		<Reference Include="Inventory.Modern.Lib">
+			<HintPath>..\..\inventory-modern-lib\Inventory.Modern.Lib\bin\Debug\net6.0\Inventory.Modern.Lib.dll</HintPath>
+		</Reference>
+		<Reference Include="CRUDCommandHelper">
+			<HintPath>..\..\crud-command-helper\CRUDCommandHelper\bin\Debug\net6.0\CRUDCommandHelper.dll</HintPath>
+		</Reference>
+  	</ItemGroup> -->
+
+	<ItemGroup>
+		<Folder Include="DependencyProvider\" />
+	</ItemGroup>
 
 </Project>
