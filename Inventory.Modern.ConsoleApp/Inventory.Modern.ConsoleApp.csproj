@@ -31,7 +31,7 @@
   	</ItemGroup>
 	  
 	<!-- Debug refs -->
-	<ItemGroup>
+	<!-- <ItemGroup>
 		<Reference Include="EFCoreHelper">
 			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
 		</Reference>
@@ -77,10 +77,10 @@
 		<Reference Include="Inventory.Modern.Lib">
 			<HintPath>..\..\inventory-modern-lib\Inventory.Modern.Lib\bin\Debug\net6.0\Inventory.Modern.Lib.dll</HintPath>
 		</Reference>
-	</ItemGroup>
+	</ItemGroup> -->
 
 	<!-- Release refs -->
-  	<!-- <ItemGroup>
+  	<ItemGroup>
 		<Reference Include="EFCoreHelper">
 			<HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
 		</Reference>
@@ -126,6 +126,6 @@
 		<Reference Include="Inventory.Modern.Lib">
 			<HintPath>..\..\..\Build\inventory-modern-lib\Inventory.Modern.Lib\Inventory.Modern.Lib.dll</HintPath>
 		</Reference>
-  	</ItemGroup> -->
+  	</ItemGroup>
 
 </Project>
