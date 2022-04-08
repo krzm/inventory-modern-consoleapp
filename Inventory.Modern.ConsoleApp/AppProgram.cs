@@ -1,12 +1,13 @@
 ﻿using CommandDotNet;
-using CommandDotNet.Helper;
 using CommandDotNet.Repl;
-using Unity;
+using CommandDotNet.Unity.Helper;
+using Config.Wrapper;
+using Serilog;
 
 namespace Inventory.Modern.ConsoleApp;
 
-public class AppProgram 
-    : AppProgramUnity<AppProgram>
+public class AppProg 
+    : AppProgUnity<AppProg>
 {
     private static bool inSession;
 
@@ -28,14 +29,14 @@ public class AppProgram
     [Subcommand]
     public StockDetailCommands? StockDetailCommands { get; set; }
 
-    public AppProgram(
-        IUnityContainer container)
-            : base(container)
+    public AppProg(
+        ILogger log
+        , IConfigReader config) 
+            : base(log, config)
     {
     }
 
     [DefaultCommand()]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "CommandDotNet needs instance member")]
     public void StartSession(
         CommandContext context
         , ReplSession replSession)
@@ -50,20 +51,6 @@ public class AppProgram
         {
             context.Console.WriteLine($"no session {inSession}");
             context.ShowHelpOnExit = true;
-        }
-    }
-
-    protected override void RegisterCommandClasses(AppRunner appRunner)
-    {
-        var commandClassTypes = appRunner.GetCommandClassTypes();
-        var registeredExplicitly = new Type[]
-        {
-            //typeof()
-        };
-        foreach (var type in commandClassTypes)
-        {
-            if (registeredExplicitly.Contains(type.type)) continue;
-            Container.RegisterSingleton(type.type);
         }
     }
 }

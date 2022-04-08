@@ -1,5 +1,9 @@
-﻿using DIHelper;
-using Inventory.Modern.Lib;
+﻿using CLIHelper.Unity;
+using CommandDotNet.Unity.Helper;
+using Config.Wrapper.Unity;
+using Inventory.Data;
+using Inventory.Table.Unity;
+using Serilog.Wrapper.Unity;
 using Unity;
 
 namespace Inventory.Modern.ConsoleApp;
@@ -13,20 +17,27 @@ public class UnityDependencySuite
     {
     }
 
+    protected override void RegisterAppData()
+    {
+        RegisterSet<AppLoggerSet>();
+        RegisterSet<AppConfigSet>();
+    }
+    
     protected override void RegisterDatabase() =>
         RegisterSet<AppDatabase>();
 
+    protected override void RegisterConsoleInput() => 
+        RegisterSet<CliIOSet>();
+        
     protected override void RegisterConsoleOutput() =>
-        RegisterSet<AppOutput>();
+        RegisterSet<InventoryTableSet>();
 
     protected override void RegisterDataMappings() =>
         RegisterSet<AppMappings>();
 
-    protected override void RegisterCommands()
-    {
+    protected override void RegisterCommands() =>
         RegisterSet<AppCommands>();
-    }
 
     protected override void RegisterProgram() =>
-        Container.RegisterSingleton<IAppProgram, AppProgram>();
+        RegisterSet<AppProgSet<AppProg>>();
 }
