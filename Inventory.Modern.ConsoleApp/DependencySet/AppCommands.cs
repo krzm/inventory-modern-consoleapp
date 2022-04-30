@@ -17,25 +17,25 @@ public class AppCommands
     public override void Register()
     {
         Container
-            .RegisterSingleton<IReadCommand<ItemArgFilter>, ItemReadCommand>()
-            .RegisterSingleton<IReadCommand<ItemCategoryArgFilter>, ItemCategoryReadCommand>()
-            .RegisterSingleton<IReadCommand<ItemDetailArgFilter>, ItemDetailReadCommand>()
-            .RegisterSingleton<IReadCommand<ItemImageArgFilter>, ItemImageReadCommand>()
+            .RegisterSingleton<IReadCommand<ItemReadArg>, ItemReadCommand>()
+            .RegisterSingleton<IReadCommand<CategoryArgFilter>, CategoryReadCommand>()
+            .RegisterSingleton<IReadCommand<SizeArgFilter>, SizeReadCommand>()
+            .RegisterSingleton<IReadCommand<ImageArgFilter>, ImageReadCommand>()
             .RegisterSingleton<IReadCommand<StockArgFilter>, StockReadCommand>()
-            .RegisterSingleton<IReadCommand<StockDetailArgFilter>, StockDetailReadCommand>()
+            .RegisterSingleton<IReadCommand<SizeArgFilter>, SizeReadCommand>()
 
-            .RegisterSingleton<IInsertCommand<ItemArg>, ItemInsertCommand>()
-            .RegisterSingleton<IInsertCommand<ItemCategoryArg>, ItemCategoryInsertCommand>()
-            .RegisterSingleton<IInsertCommand<ItemDetailArg>, ItemDetailInsertCommand>()
-            .RegisterSingleton<IInsertCommand<ItemImageArg>, ItemImageInsertCommand>()
+            .RegisterSingleton<IInsertCommand<ItemInsertArg>, ItemInsertCommand>()
+            .RegisterSingleton<IInsertCommand<CategoryArg>, CategoryInsertCommand>()
+            .RegisterSingleton<IInsertCommand<SizeArg>, SizeInsertCommand>()
+            .RegisterSingleton<IInsertCommand<ImageArg>, ImageInsertCommand>()
             .RegisterSingleton<IInsertCommand<StockArg>, StockInsertCommand>()
-            .RegisterSingleton<IInsertCommand<StockDetailArg>, StockDetailInsertCommand>()
+            .RegisterSingleton<IInsertCommand<SizeArg>, SizeInsertCommand>()
 
             .RegisterSingleton<IUpdateCommand<ItemArgUpdate>, ItemUpdateCommand>()
-            .RegisterSingleton<IUpdateCommand<ItemCategoryArgUpdate>, ItemCategoryUpdateCommand>()
-            .RegisterSingleton<IUpdateCommand<ItemDetailArgUpdate>, ItemDetailUpdateCommand>()
-            .RegisterSingleton<IUpdateCommand<ItemImageArgUpdate>, ItemImageUpdateCommand>()
+            .RegisterSingleton<IUpdateCommand<CategoryArgUpdate>, CategoryUpdateCommand>()
+            .RegisterSingleton<IUpdateCommand<SizeArgUpdate>, SizeUpdateCommand>()
+            .RegisterSingleton<IUpdateCommand<ImageArgUpdate>, ImageUpdateCommand>()
             .RegisterSingleton<IUpdateCommand<StockArgUpdate>, StockUpdateCommand>()
-            .RegisterSingleton<IUpdateCommand<StockDetailArgUpdate>, StockDetailUpdateCommand>();
+            .RegisterSingleton<IUpdateCommand<SizeArgUpdate>, SizeUpdateCommand>();
     }
 }

@@ -5,18 +5,18 @@ using Inventory.Modern.Lib;
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class ItemDetailCommands : InvCommands
+public class ImageCommands : InvCommands
 {
-    protected const string MainCommand = "itemdetail";
+    protected const string MainCommand = "itemimage";
 
-    private readonly IReadCommand<ItemDetailArgFilter> readCommand;
-    private readonly IInsertCommand<ItemDetailArg> insertCommand;
-    private readonly IUpdateCommand<ItemDetailArgUpdate> updateCommand;
+    private readonly IReadCommand<ImageArgFilter> readCommand;
+    private readonly IInsertCommand<ImageArg> insertCommand;
+    private readonly IUpdateCommand<ImageArgUpdate> updateCommand;
 
-    public ItemDetailCommands(
-        IReadCommand<ItemDetailArgFilter> readCommand
-        , IInsertCommand<ItemDetailArg> insertCommand
-        , IUpdateCommand<ItemDetailArgUpdate> updateCommand)
+    public ImageCommands(
+        IReadCommand<ImageArgFilter> readCommand
+        , IInsertCommand<ImageArg> insertCommand
+        , IUpdateCommand<ImageArgUpdate> updateCommand)
     {
         this.readCommand = readCommand;
         this.insertCommand = insertCommand;
@@ -28,13 +28,13 @@ public class ItemDetailCommands : InvCommands
     }
 
     [DefaultCommand()]
-    public void Read(ItemDetailArgFilter model)
+    public void Read(ImageArgFilter model)
     {
         readCommand.Read(model);
     }
 
     [Command(InsertCommand)]
-    public void Insert(ItemDetailArg model)
+    public void Insert(ImageArg model)
     {
         insertCommand.Insert(model);
         ReadAfterChange();
@@ -42,11 +42,11 @@ public class ItemDetailCommands : InvCommands
 
     private void ReadAfterChange()
     {
-        readCommand.Read(new ItemDetailArgFilter());
+        readCommand.Read(new ImageArgFilter());
     }
 
     [Command(UpdateCommand)]
-    public void Update(ItemDetailArgUpdate model)
+    public void Update(ImageArgUpdate model)
     {
         updateCommand.Update(model);
         ReadAfterChange();

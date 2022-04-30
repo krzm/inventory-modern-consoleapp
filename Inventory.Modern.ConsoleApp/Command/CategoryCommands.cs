@@ -5,18 +5,18 @@ using Inventory.Modern.Lib;
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class ItemImageCommands : InvCommands
+public class CategoryCommands : InvCommands
 {
-    protected const string MainCommand = "itemimage";
+    protected const string MainCommand = "category";
 
-    private readonly IReadCommand<ItemImageArgFilter> readCommand;
-    private readonly IInsertCommand<ItemImageArg> insertCommand;
-    private readonly IUpdateCommand<ItemImageArgUpdate> updateCommand;
+    private readonly IReadCommand<CategoryArgFilter> readCommand;
+    private readonly IInsertCommand<CategoryArg> insertCommand;
+    private readonly IUpdateCommand<CategoryArgUpdate> updateCommand;
 
-    public ItemImageCommands(
-        IReadCommand<ItemImageArgFilter> readCommand
-        , IInsertCommand<ItemImageArg> insertCommand
-        , IUpdateCommand<ItemImageArgUpdate> updateCommand)
+    public CategoryCommands(
+        IReadCommand<CategoryArgFilter> readCommand
+        , IInsertCommand<CategoryArg> insertCommand
+        , IUpdateCommand<CategoryArgUpdate> updateCommand)
     {
         this.readCommand = readCommand;
         this.insertCommand = insertCommand;
@@ -28,13 +28,13 @@ public class ItemImageCommands : InvCommands
     }
 
     [DefaultCommand()]
-    public void Read(ItemImageArgFilter model)
+    public void Read(CategoryArgFilter model)
     {
         readCommand.Read(model);
     }
 
     [Command(InsertCommand)]
-    public void Insert(ItemImageArg model)
+    public void Insert(CategoryArg model)
     {
         insertCommand.Insert(model);
         ReadAfterChange();
@@ -42,11 +42,11 @@ public class ItemImageCommands : InvCommands
 
     private void ReadAfterChange()
     {
-        readCommand.Read(new ItemImageArgFilter());
+        readCommand.Read(new CategoryArgFilter());
     }
 
     [Command(UpdateCommand)]
-    public void Update(ItemImageArgUpdate model)
+    public void Update(CategoryArgUpdate model)
     {
         updateCommand.Update(model);
         ReadAfterChange();

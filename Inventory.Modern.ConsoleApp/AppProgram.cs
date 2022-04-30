@@ -15,19 +15,16 @@ public class AppProg
     public ItemCommands? ItemCommands { get; set; }
 
     [Subcommand]
-    public ItemCategoryCommands? ItemCategoryCommands { get; set; }
+    public CategoryCommands? CategoryCommands { get; set; }
 
     [Subcommand]
-    public ItemDetailCommands? ItemDetailCommands { get; set; }
+    public SizeCommands? SizeCommands { get; set; }
 
     [Subcommand]
-    public ItemImageCommands? ItemImageCommands { get; set; }
+    public ImageCommands? ImageCommands { get; set; }
 
     [Subcommand]
     public StockCommands? StockCommands { get; set; }
-
-    [Subcommand]
-    public StockDetailCommands? StockDetailCommands { get; set; }
 
     public AppProg(
         ILogger log

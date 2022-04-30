@@ -18,18 +18,16 @@ public class AppMappings
         new (
         c => 
         {
-            c.CreateMap<ItemArg, Item>();
-            c.CreateMap<ItemCategoryArg, ItemCategory>();
-            c.CreateMap<ItemDetailArg, ItemDetail>();
-            c.CreateMap<ItemImageArg, ItemImage>();
+            c.CreateMap<ItemInsertArg, Item>();
+            c.CreateMap<CategoryArg, Category>();
+            c.CreateMap<SizeArg, Size>();
+            c.CreateMap<ImageArg, Image>();
             c.CreateMap<StockArg, Stock>();
-            c.CreateMap<StockDetailArg, StockDetail>();
 
             c.CreateMap<ItemArgUpdate, ItemUpdate>();
-            c.CreateMap<ItemCategoryArgUpdate, ItemCategoryUpdate>();
-            c.CreateMap<ItemDetailArgUpdate, ItemDetailUpdate>();
-            c.CreateMap<ItemImageArgUpdate, ItemImageUpdate>();
+            c.CreateMap<CategoryArgUpdate, CategoryUpdate>();
+            c.CreateMap<SizeArgUpdate, SizeUpdate>();
+            c.CreateMap<ImageArgUpdate, ImageUpdate>();
             c.CreateMap<StockArgUpdate, StockUpdate>();
-            c.CreateMap<StockDetailArgUpdate, StockDetailUpdate>();
         });
 }

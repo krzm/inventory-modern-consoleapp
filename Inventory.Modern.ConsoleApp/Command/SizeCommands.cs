@@ -5,18 +5,18 @@ using Inventory.Modern.Lib;
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class StockDetailCommands : InvCommands
+public class SizeCommands : InvCommands
 {
-    protected const string MainCommand = "stockdetail";
+    protected const string MainCommand = "size";
 
-    private readonly IReadCommand<StockDetailArgFilter> readCommand;
-    private readonly IInsertCommand<StockDetailArg> insertCommand;
-    private readonly IUpdateCommand<StockDetailArgUpdate> updateCommand;
+    private readonly IReadCommand<SizeArgFilter> readCommand;
+    private readonly IInsertCommand<SizeArg> insertCommand;
+    private readonly IUpdateCommand<SizeArgUpdate> updateCommand;
 
-    public StockDetailCommands(
-        IReadCommand<StockDetailArgFilter> readCommand
-        , IInsertCommand<StockDetailArg> insertCommand
-        , IUpdateCommand<StockDetailArgUpdate> updateCommand)
+    public SizeCommands(
+        IReadCommand<SizeArgFilter> readCommand
+        , IInsertCommand<SizeArg> insertCommand
+        , IUpdateCommand<SizeArgUpdate> updateCommand)
     {
         this.readCommand = readCommand;
         this.insertCommand = insertCommand;
@@ -28,13 +28,13 @@ public class StockDetailCommands : InvCommands
     }
 
     [DefaultCommand()]
-    public void Read(StockDetailArgFilter model)
+    public void Read(SizeArgFilter model)
     {
         readCommand.Read(model);
     }
 
     [Command(InsertCommand)]
-    public void Insert(StockDetailArg model)
+    public void Insert(SizeArg model)
     {
         insertCommand.Insert(model);
         ReadAfterChange();
@@ -42,11 +42,11 @@ public class StockDetailCommands : InvCommands
 
     private void ReadAfterChange()
     {
-        readCommand.Read(new StockDetailArgFilter());
+        readCommand.Read(new SizeArgFilter());
     }
 
     [Command(UpdateCommand)]
-    public void Update(StockDetailArgUpdate model)
+    public void Update(SizeArgUpdate model)
     {
         updateCommand.Update(model);
         ReadAfterChange();

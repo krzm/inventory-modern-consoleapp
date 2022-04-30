@@ -1,40 +1,48 @@
 ﻿using CommandDotNet;
+using Config.Wrapper;
 using CRUDCommandHelper;
 using Inventory.Modern.Lib;
 
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class ItemCommands : InvCommands
+public class ItemCommands
+    : InvCommands
 {
-    protected const string MainCommand = "item";
-
-    private readonly IReadCommand<ItemArgFilter> readCommand;
-    private readonly IInsertCommand<ItemArg> insertCommand;
+    private const string MainCommand = "item";
+    private const string ReadCmdAfterChangeConfigKey = "ReadCmdAfterChange";
+    private readonly IReadCommand<ItemReadArg> readCommand;
+    private readonly IInsertCommand<ItemInsertArg> insertCommand;
     private readonly IUpdateCommand<ItemArgUpdate> updateCommand;
+    private readonly IConfigReader config;
+    private CmdSettings? cmdSettings;
 
     public ItemCommands(
-        IReadCommand<ItemArgFilter> readCommand
-        , IInsertCommand<ItemArg> insertCommand
-        , IUpdateCommand<ItemArgUpdate> updateCommand)
+        IReadCommand<ItemReadArg> readCommand
+        , IInsertCommand<ItemInsertArg> insertCommand
+        , IUpdateCommand<ItemArgUpdate> updateCommand
+        , IConfigReader config)
     {
         this.readCommand = readCommand;
-        this.insertCommand = insertCommand;
-        this.updateCommand = updateCommand;
-
         ArgumentNullException.ThrowIfNull(this.readCommand);
+        this.insertCommand = insertCommand;
         ArgumentNullException.ThrowIfNull(this.insertCommand);
+        this.updateCommand = updateCommand;
         ArgumentNullException.ThrowIfNull(this.updateCommand);
+        this.config = config;
+        ArgumentNullException.ThrowIfNull(this.config);
+        cmdSettings = config.GetConfigSection<CmdSettings>(nameof(CmdSettings));
+        ArgumentNullException.ThrowIfNull(cmdSettings);
     }
 
     [DefaultCommand()]
-    public void Read(ItemArgFilter model)
+    public void Read(ItemReadArg model)
     {
         readCommand.Read(model);
     }
 
     [Command(InsertCommand)]
-    public void Insert(ItemArg model)
+    public void Insert(ItemInsertArg model)
     {
         insertCommand.Insert(model);
         ReadAfterChange();
@@ -42,7 +50,9 @@ public class ItemCommands : InvCommands
 
     private void ReadAfterChange()
     {
-        readCommand.Read(new ItemArgFilter());
+        if(cmdSettings == null || cmdSettings.ReadCmdAfterChange == false)
+            return;
+        readCommand.Read(new ItemReadArg());
     }
 
     [Command(UpdateCommand)]
