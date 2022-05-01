@@ -50,9 +50,14 @@ public class ItemCommands
 
     private void ReadAfterChange()
     {
-        if(cmdSettings == null || cmdSettings.ReadCmdAfterChange == false)
+        if (IsReadAfterChangeOff())
             return;
         readCommand.Read(new ItemReadArg());
+    }
+
+    private bool IsReadAfterChangeOff()
+    {
+        return cmdSettings == null || cmdSettings.ReadCmdAfterChange == false;
     }
 
     [Command(UpdateCommand)]
