@@ -13,14 +13,14 @@ public class ItemCommands
     private const string ReadCmdAfterChangeConfigKey = "ReadCmdAfterChange";
     private readonly IReadCommand<ItemReadArg> readCommand;
     private readonly IInsertCommand<ItemInsertArg> insertCommand;
-    private readonly IUpdateCommand<ItemArgUpdate> updateCommand;
+    private readonly IUpdateCommand<ItemUpdateArg> updateCommand;
     private readonly IConfigReader config;
     private CmdSettings? cmdSettings;
 
     public ItemCommands(
         IReadCommand<ItemReadArg> readCommand
         , IInsertCommand<ItemInsertArg> insertCommand
-        , IUpdateCommand<ItemArgUpdate> updateCommand
+        , IUpdateCommand<ItemUpdateArg> updateCommand
         , IConfigReader config)
     {
         this.readCommand = readCommand;
@@ -61,7 +61,7 @@ public class ItemCommands
     }
 
     [Command(UpdateCommand)]
-    public void Update(ItemArgUpdate model)
+    public void Update(ItemUpdateArg model)
     {
         updateCommand.Update(model);
         ReadAfterChange();

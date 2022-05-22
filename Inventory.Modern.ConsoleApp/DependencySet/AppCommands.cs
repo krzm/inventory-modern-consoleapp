@@ -31,7 +31,7 @@ public class AppCommands
             .RegisterSingleton<IInsertCommand<StockArg>, StockInsertCommand>()
             .RegisterSingleton<IInsertCommand<SizeArg>, SizeInsertCommand>()
 
-            .RegisterSingleton<IUpdateCommand<ItemArgUpdate>, ItemUpdateCommand>()
+            .RegisterSingleton<IUpdateCommand<ItemUpdateArg>, ItemUpdateCommand>()
             .RegisterSingleton<IUpdateCommand<CategoryArgUpdate>, CategoryUpdateCommand>()
             .RegisterSingleton<IUpdateCommand<SizeArgUpdate>, SizeUpdateCommand>()
             .RegisterSingleton<IUpdateCommand<ImageArgUpdate>, ImageUpdateCommand>()
