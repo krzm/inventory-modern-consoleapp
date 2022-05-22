@@ -2,6 +2,7 @@
 using CommandDotNet.Unity.Helper;
 using Config.Wrapper.Unity;
 using Inventory.Data;
+using Inventory.Modern.Lib;
 using Inventory.Table.Unity;
 using Serilog.Wrapper.Unity;
 using Unity;
