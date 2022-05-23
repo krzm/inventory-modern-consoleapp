@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
   	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
 		<PackageReference Include="Unity" Version="5.11.10" />
 		<PackageReference Include="AutoMapper" Version="11.0.0" />
 		<PackageReference Include="CommandDotNet" Version="6.1.0-alpha.repl" />
@@ -31,7 +32,7 @@
   	</ItemGroup>
 	  
 	<!-- Debug refs -->
-	<!-- <ItemGroup>
+	<ItemGroup>
 		<Reference Include="EFCoreHelper">
 			<HintPath>..\..\efcore-helper\EFCoreHelper\bin\Debug\net6.0\EFCoreHelper.dll</HintPath>
 		</Reference>
@@ -77,10 +78,10 @@
 		<Reference Include="Inventory.Modern.Lib">
 			<HintPath>..\..\inventory-modern-lib\Inventory.Modern.Lib\bin\Debug\net6.0\Inventory.Modern.Lib.dll</HintPath>
 		</Reference>
-	</ItemGroup> -->
+	</ItemGroup>
 
 	<!-- Release refs -->
-  	<ItemGroup>
+  	<!-- <ItemGroup>
 		<Reference Include="EFCoreHelper">
 			<HintPath>..\..\..\Build\efcore-helper\EFCoreHelper\EFCoreHelper.dll</HintPath>
 		</Reference>
@@ -126,6 +127,6 @@
 		<Reference Include="Inventory.Modern.Lib">
 			<HintPath>..\..\..\Build\inventory-modern-lib\Inventory.Modern.Lib\Inventory.Modern.Lib.dll</HintPath>
 		</Reference>
-  	</ItemGroup>
+  	</ItemGroup> -->
 
 </Project>
