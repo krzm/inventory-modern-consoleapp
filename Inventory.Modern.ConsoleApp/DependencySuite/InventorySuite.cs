@@ -1,5 +1,5 @@
-﻿using CLIHelper.Unity;
-using CommandDotNet.Unity.Helper;
+using CLIHelper.Unity;
+using DIHelper.Unity;
 using Inventory.Data;
 using Inventory.Modern.Lib;
 using Inventory.Table.Unity;
@@ -7,8 +7,8 @@ using Unity;
 
 namespace Inventory.Modern.ConsoleApp;
 
-public class InventorySuite 
-    : InventoryServiceSuite
+public abstract class InventorySuite 
+    : UnityDependencySuite
 {
     public InventorySuite(
         IUnityContainer container)
@@ -30,7 +30,4 @@ public class InventorySuite
 
     protected override void RegisterCommands() =>
         RegisterSet<AppCommands>();
-
-    protected override void RegisterProgram() =>
-        RegisterSet<AppProgSet<AppProg>>();
 }

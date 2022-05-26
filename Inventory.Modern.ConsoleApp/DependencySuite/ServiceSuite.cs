@@ -5,10 +5,10 @@ using Unity;
 
 namespace Inventory.Modern.ConsoleApp;
 
-public class InventoryServiceSuite 
+public class ServiceSuite 
     : UnityDependencySuite
 {
-    public InventoryServiceSuite(
+    public ServiceSuite(
         IUnityContainer container)
         : base(container)
     {

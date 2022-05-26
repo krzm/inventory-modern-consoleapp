@@ -6,8 +6,8 @@ using Serilog;
 
 namespace Inventory.Modern.ConsoleApp;
 
-public class AppProg 
-    : AppProgUnity<AppProg>
+public class ReplCli
+    : AppProgUnity<ReplCli>
 {
     private static bool inSession;
 
@@ -26,7 +26,7 @@ public class AppProg
     [Subcommand]
     public StockCommands? StockCommands { get; set; }
 
-    public AppProg(
+    public ReplCli(
         ILogger log
         , IConfigReader config) 
             : base(log, config)
