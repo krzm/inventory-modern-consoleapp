@@ -15,11 +15,11 @@ public class CategoryInsertTests
         var transaction = await uow.BeginTransactionAsync();
         try
         {
-            AssertCount(uow, 0);
-            RunCmd(booter.App!, "category ins test test");
-            AssertCount(uow, 1);
-            var data = GetItem(uow, elementIndex: 0);
-            AssertData(
+            AssertCategoryCount(uow, 0);
+            RunCmd(booter, "category ins test test");
+            AssertCategoryCount(uow, 1);
+            var data = GetCategory(uow, elementIndex: 0);
+            AssertCategory(
                 new Category 
                 { 
                     Name = "test"

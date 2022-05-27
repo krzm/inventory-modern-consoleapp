@@ -6,29 +6,29 @@ namespace Inventory.Modern.CliApp.Tests;
 public abstract class CategoryTestApi
     : InventoryCliTestApi
 {
-    protected static IEnumerable<Category>? GetData(
+    protected static IEnumerable<Category>? GetCategories(
         IInventoryUnitOfWork? unitOfWork)
     {
         return unitOfWork?.Category?.Get();
     }
 
-    protected static void AssertCount(
+    protected static void AssertCategoryCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
-        Assert.True(GetData(repo)?.Count() == count);
+        Assert.True(GetCategories(repo)?.Count() == count);
     }
 
-    protected static Category GetItem(
+    protected static Category GetCategory(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {
-        var data = GetData(repo)?.ElementAt(elementIndex);
+        var data = GetCategories(repo)?.ElementAt(elementIndex);
         ArgumentNullException.ThrowIfNull(data);
         return data;
     }
 
-    protected static void AssertData(
+    protected static void AssertCategory(
         Category expected
         , Category acctual)
     {

@@ -4,31 +4,31 @@ using Xunit;
 namespace Inventory.Modern.CliApp.Tests;
 
 public abstract class SizeTestApi
-    : InventoryCliTestApi
+    : CategoryTestApi
 {
-    protected static IEnumerable<Size>? GetData(
+    protected static IEnumerable<Size>? GetSizes(
         IInventoryUnitOfWork? unitOfWork)
     {
         return unitOfWork?.Size?.Get();
     }
 
-    protected static void AssertCount(
+    protected static void AssertSizeCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
-        Assert.True(GetData(repo)?.Count() == count);
+        Assert.True(GetSizes(repo)?.Count() == count);
     }
 
-    protected static Size GetItem(
+    protected static Size GetSize(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {
-        var data = GetData(repo)?.ElementAt(elementIndex);
+        var data = GetSizes(repo)?.ElementAt(elementIndex);
         ArgumentNullException.ThrowIfNull(data);
         return data;
     }
 
-    protected static void AssertData(
+    protected static void AssertSize(
         Size expected
         , Size acctual)
     {

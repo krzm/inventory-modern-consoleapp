@@ -15,11 +15,11 @@ public class SizeInsertTests
         var transaction = await uow.BeginTransactionAsync();
         try
         {
-            AssertCount(uow, 0);
-            RunCmd(booter.App!, "size ins 1 1 1");
-            AssertCount(uow, 1);
-            var data = GetItem(uow, elementIndex: 0);
-            AssertData(
+            AssertSizeCount(uow, 0);
+            RunCmd(booter, "size ins 1 1 1");
+            AssertSizeCount(uow, 1);
+            var data = GetSize(uow, elementIndex: 0);
+            AssertSize(
                 new Size 
                 { 
                     Length = 1

@@ -1,33 +1,33 @@
 using DIHelper;
 using Inventory.Data;
-using CliAppl = Inventory.Modern.ConsoleApp.CliApp;
+using Inventory.Modern.ConsoleApp;
 
 namespace Inventory.Modern.CliApp.Tests;
 
 public abstract class InventoryCliTestApi
 {
-    protected static CliAppl GetBooter()
+    protected static InventoryBootstraper GetBooter()
     {
-        var app = new CliAppl();
-        app.CreateApp();
-        return app;
+        var booter = new InventoryBootstraper();
+        booter.CreateApp();
+        return booter;
     }
 
     protected static IInventoryUnitOfWork GetUnitOfWork(
-        CliAppl app)
+        InventoryBootstraper booter)
     {
-        var unitOfWork = app.Suite?.Resolve<IInventoryUnitOfWork>();
+        var unitOfWork = booter.Suite?.Resolve<IInventoryUnitOfWork>();
         ArgumentNullException.ThrowIfNull(unitOfWork);
         return unitOfWork;
     }
 
     protected static void RunCmd(
-        IAppProgram app
+        IBootstraper booter
         , string cmd)
     {
         if(cmd.Contains(" ") == false)
-            app.Main(cmd);
+            booter.RunApp(cmd);
         else 
-            app.Main(cmd.Split(' '));
+            booter.RunApp(cmd.Split(' '));
     }   
 }
