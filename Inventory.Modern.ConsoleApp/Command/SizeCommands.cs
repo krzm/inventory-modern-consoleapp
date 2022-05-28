@@ -10,12 +10,12 @@ public class SizeCommands : InvCommands
     protected const string MainCommand = "size";
 
     private readonly IReadCommand<SizeArgFilter> readCommand;
-    private readonly IInsertCommand<SizeArg> insertCommand;
+    private readonly IInsertCommand<SizeArgs> insertCommand;
     private readonly IUpdateCommand<SizeArgUpdate> updateCommand;
 
     public SizeCommands(
         IReadCommand<SizeArgFilter> readCommand
-        , IInsertCommand<SizeArg> insertCommand
+        , IInsertCommand<SizeArgs> insertCommand
         , IUpdateCommand<SizeArgUpdate> updateCommand)
     {
         this.readCommand = readCommand;
@@ -34,7 +34,7 @@ public class SizeCommands : InvCommands
     }
 
     [Command(InsertCommand)]
-    public void Insert(SizeArg model)
+    public void Insert(SizeArgs model)
     {
         insertCommand.Insert(model);
         ReadAfterChange();
