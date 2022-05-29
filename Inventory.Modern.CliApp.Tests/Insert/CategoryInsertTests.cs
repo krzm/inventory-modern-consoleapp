@@ -1,10 +1,11 @@
 using Inventory.Data;
+using Inventory.Modern.CliApp.TestApi;
 using Xunit;
 
 namespace Inventory.Modern.CliApp.Tests;
 
-public class SizeInsertTests
-    : SizeTestApi
+public class CategoryInsertTests
+    : CategoryTestApi
 {
     [Fact]
     public async void Test_Correct_Data_Insert()
@@ -15,16 +16,15 @@ public class SizeInsertTests
         var transaction = await uow.BeginTransactionAsync();
         try
         {
-            AssertSizeCount(uow, 0);
-            RunCmd(booter, "size ins 1 1 1");
-            AssertSizeCount(uow, 1);
-            var data = GetSize(uow, elementIndex: 0);
-            AssertSize(
-                new Size 
+            AssertCategoryCount(uow, 0);
+            RunCmd(booter, "category ins test test");
+            AssertCategoryCount(uow, 1);
+            var data = GetCategory(uow, elementIndex: 0);
+            AssertCategory(
+                new Category 
                 { 
-                    Length = 1
-                    , Heigth = 1
-                    , Depth = 1
+                    Name = "test"
+                    , Description = "test"
                 }
                 , data!);
         }

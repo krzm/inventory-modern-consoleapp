@@ -1,14 +1,15 @@
 ﻿using CommandDotNet;
+using Config.Wrapper;
 using CRUDCommandHelper;
 using Inventory.Modern.Lib;
 
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class CategoryCommands : InvCommands
+public class CategoryCommands
+    : InventoryCommands
 {
     protected const string MainCommand = "category";
-
     private readonly IReadCommand<CategoryArgFilter> readCommand;
     private readonly IInsertCommand<CategoryArg> insertCommand;
     private readonly IUpdateCommand<CategoryArgUpdate> updateCommand;
@@ -16,14 +17,15 @@ public class CategoryCommands : InvCommands
     public CategoryCommands(
         IReadCommand<CategoryArgFilter> readCommand
         , IInsertCommand<CategoryArg> insertCommand
-        , IUpdateCommand<CategoryArgUpdate> updateCommand)
+        , IUpdateCommand<CategoryArgUpdate> updateCommand
+        , IConfigReader config)
+            : base(config)
     {
         this.readCommand = readCommand;
-        this.insertCommand = insertCommand;
-        this.updateCommand = updateCommand;
-
         ArgumentNullException.ThrowIfNull(this.readCommand);
+        this.insertCommand = insertCommand;
         ArgumentNullException.ThrowIfNull(this.insertCommand);
+        this.updateCommand = updateCommand;
         ArgumentNullException.ThrowIfNull(this.updateCommand);
     }
 
@@ -37,18 +39,20 @@ public class CategoryCommands : InvCommands
     public void Insert(CategoryArg model)
     {
         insertCommand.Insert(model);
-        ReadAfterChange();
+        ReadAfterChange(GetReadTask());
     }
 
-    private void ReadAfterChange()
+    private Func<Task> GetReadTask()
     {
-        readCommand.Read(new CategoryArgFilter());
+        return GetReadTask<CategoryArgFilter>(
+            readCommand
+            , new CategoryArgFilter());
     }
 
     [Command(UpdateCommand)]
     public void Update(CategoryArgUpdate model)
     {
         updateCommand.Update(model);
-        ReadAfterChange();
+        ReadAfterChange(GetReadTask());
     }
 }

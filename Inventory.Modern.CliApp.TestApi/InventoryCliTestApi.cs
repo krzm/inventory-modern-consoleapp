@@ -2,7 +2,7 @@ using DIHelper;
 using Inventory.Data;
 using Inventory.Modern.ConsoleApp;
 
-namespace Inventory.Modern.CliApp.Tests;
+namespace Inventory.Modern.CliApp.TestApi;
 
 public abstract class InventoryCliTestApi
 {

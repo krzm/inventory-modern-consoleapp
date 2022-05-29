@@ -1,14 +1,15 @@
 ﻿using CommandDotNet;
+using Config.Wrapper;
 using CRUDCommandHelper;
 using Inventory.Modern.Lib;
 
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class StockCommands : InvCommands
+public class StockCommands
+    : InventoryCommands
 {
     protected const string MainCommand = "stock";
-
     private readonly IReadCommand<StockArgFilter> readCommand;
     private readonly IInsertCommand<StockArg> insertCommand;
     private readonly IUpdateCommand<StockArgUpdate> updateCommand;
@@ -16,14 +17,15 @@ public class StockCommands : InvCommands
     public StockCommands(
         IReadCommand<StockArgFilter> readCommand
         , IInsertCommand<StockArg> insertCommand
-        , IUpdateCommand<StockArgUpdate> updateCommand)
+        , IUpdateCommand<StockArgUpdate> updateCommand
+        , IConfigReader config)
+            : base(config)
     {
         this.readCommand = readCommand;
-        this.insertCommand = insertCommand;
-        this.updateCommand = updateCommand;
-
         ArgumentNullException.ThrowIfNull(this.readCommand);
+        this.insertCommand = insertCommand;
         ArgumentNullException.ThrowIfNull(this.insertCommand);
+        this.updateCommand = updateCommand;
         ArgumentNullException.ThrowIfNull(this.updateCommand);
     }
 
@@ -37,18 +39,20 @@ public class StockCommands : InvCommands
     public void Insert(StockArg model)
     {
         insertCommand.Insert(model);
-        ReadAfterChange();
+        ReadAfterChange(GetReadTask());
     }
 
-    private void ReadAfterChange()
+    private Func<Task> GetReadTask()
     {
-        readCommand.Read(new StockArgFilter());
+        return GetReadTask<StockArgFilter>(
+            readCommand
+            , new StockArgFilter());
     }
 
     [Command(UpdateCommand)]
     public void Update(StockArgUpdate model)
     {
         updateCommand.Update(model);
-        ReadAfterChange();
+        ReadAfterChange(GetReadTask());
     }
 }

@@ -1,11 +1,11 @@
-using System.Diagnostics;
 using Inventory.Data;
+using Inventory.Modern.CliApp.TestApi;
 using Xunit;
 
 namespace Inventory.Modern.CliApp.Tests;
 
-public class ItemInsertTests
-    : ItemTestApi
+public class StockInsertTests
+    : StockTestApi
 {
     [Fact]
     public async void Test_Correct_Data_Insert()
@@ -16,27 +16,23 @@ public class ItemInsertTests
         var transaction = await uow.BeginTransactionAsync();
         try
         {
-            AssertItemCount(uow, 0);
+            AssertStockCount(uow, 0);
             RunCmd(booter, "category ins test test");
             RunCmd(booter, "size ins 1 1 1");
             var category = GetCategory(uow, elementIndex: 0);
             var size = GetSize(uow, elementIndex: 0);
             RunCmd(booter, $"item ins test test {category.Id} {size.Id}");
-            AssertItemCount(uow, 1);
-            var data = GetItem(uow, elementIndex: 0);
-            AssertItem(
-                new Item 
+            var item = GetItem(uow, 0);
+            RunCmd(booter, $"stock ins {item.Id} test");
+            AssertStockCount(uow, 1);
+            var data = GetStock(uow, elementIndex: 0);
+            AssertStock(
+                new Stock 
                 { 
-                    Name = "test"
+                    ItemId = item.Id
                     , Description = "test"
-                    , CategoryId = category.Id
-                    , SizeId = size.Id
                 }
                 , data!);
-        }
-        catch(Exception ex)
-        {
-            Debug.WriteLine(ex);
         }
         finally
         {

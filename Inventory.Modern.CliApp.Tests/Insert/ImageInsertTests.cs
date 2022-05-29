@@ -1,4 +1,5 @@
 using Inventory.Data;
+using Inventory.Modern.CliApp.TestApi;
 using Xunit;
 
 namespace Inventory.Modern.CliApp.Tests;

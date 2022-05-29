@@ -1,14 +1,14 @@
 ﻿using CommandDotNet;
+using Config.Wrapper;
 using CRUDCommandHelper;
 using Inventory.Modern.Lib;
 
 namespace Inventory.Modern.ConsoleApp;
 
 [Command(MainCommand)]
-public class SizeCommands : InvCommands
+public class SizeCommands : InventoryCommands
 {
     protected const string MainCommand = "size";
-
     private readonly IReadCommand<SizeArgFilter> readCommand;
     private readonly IInsertCommand<SizeArgs> insertCommand;
     private readonly IUpdateCommand<SizeArgUpdate> updateCommand;
@@ -16,14 +16,15 @@ public class SizeCommands : InvCommands
     public SizeCommands(
         IReadCommand<SizeArgFilter> readCommand
         , IInsertCommand<SizeArgs> insertCommand
-        , IUpdateCommand<SizeArgUpdate> updateCommand)
+        , IUpdateCommand<SizeArgUpdate> updateCommand
+        , IConfigReader config)
+            : base(config)
     {
         this.readCommand = readCommand;
-        this.insertCommand = insertCommand;
-        this.updateCommand = updateCommand;
-
         ArgumentNullException.ThrowIfNull(this.readCommand);
+        this.insertCommand = insertCommand;
         ArgumentNullException.ThrowIfNull(this.insertCommand);
+        this.updateCommand = updateCommand;
         ArgumentNullException.ThrowIfNull(this.updateCommand);
     }
 
@@ -37,18 +38,20 @@ public class SizeCommands : InvCommands
     public void Insert(SizeArgs model)
     {
         insertCommand.Insert(model);
-        ReadAfterChange();
+        ReadAfterChange(GetReadTask());
     }
 
-    private void ReadAfterChange()
+    private Func<Task> GetReadTask()
     {
-        readCommand.Read(new SizeArgFilter());
+        return GetReadTask<SizeArgFilter>(
+            readCommand
+            , new SizeArgFilter());
     }
 
     [Command(UpdateCommand)]
     public void Update(SizeArgUpdate model)
     {
         updateCommand.Update(model);
-        ReadAfterChange();
+        ReadAfterChange(GetReadTask());
     }
 }

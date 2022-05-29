@@ -1,7 +1,7 @@
 using Inventory.Data;
 using Xunit;
 
-namespace Inventory.Modern.CliApp.Tests;
+namespace Inventory.Modern.CliApp.TestApi;
 
 public abstract class StockTestApi
     : ImageTestApi
