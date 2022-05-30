@@ -19,7 +19,7 @@ public abstract class CategoryTestApi
         Assert.True(GetCategories(repo)?.Count() == count);
     }
 
-    protected static Category GetCategory(
+    public Category GetCategory(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {

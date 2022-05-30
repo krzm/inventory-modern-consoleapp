@@ -21,13 +21,10 @@ public abstract class InventoryCliTestApi
         return unitOfWork;
     }
 
-    protected static void RunCmd(
+    public void RunCmd(
         IBootstraper booter
-        , string cmd)
+        , params string[] cmd)
     {
-        if(cmd.Contains(" ") == false)
-            booter.RunApp(cmd);
-        else 
-            booter.RunApp(cmd.Split(' '));
+        booter.RunApp(cmd);
     }   
 }

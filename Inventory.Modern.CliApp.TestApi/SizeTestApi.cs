@@ -19,7 +19,7 @@ public abstract class SizeTestApi
         Assert.True(GetSizes(repo)?.Count() == count);
     }
 
-    protected static Size GetSize(
+    public Size GetSize(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {
