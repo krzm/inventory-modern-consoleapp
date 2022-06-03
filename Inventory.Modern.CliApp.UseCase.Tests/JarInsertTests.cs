@@ -19,7 +19,6 @@ public class JarInsertTests
     public void Test1(params string[] cmd
     )
     {
-
         fixture.RunCmd(fixture.Booter, cmd);
         //fixture.RunCmd(fixture.Booter, sizeCmd);
         //var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
