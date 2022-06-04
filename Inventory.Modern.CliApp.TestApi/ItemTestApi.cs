@@ -19,7 +19,7 @@ public abstract class ItemTestApi
         Assert.True(GetItems(repo)?.Count() == count);
     }
 
-    protected static Item GetItem(
+    public Item GetItem(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {

@@ -15,46 +15,23 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Data), MemberType= typeof(JarData))]
-    public void Test1(params string[] cmd
-    )
+    [MemberData(nameof(JarData.Level1), MemberType= typeof(JarData))]
+    public void TestLevel1(params string[] cmd)
     {
         fixture.RunCmd(fixture.Booter, cmd);
-        //fixture.RunCmd(fixture.Booter, sizeCmd);
-        //var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
-        //var size = fixture.GetSize(fixture.Uow, elementIndex: 0);
-        //RunCmd(booter, $"item ins test test {category.Id} {size.Id}");
-        //var item = GetItem(uow, 0);
-        //RunCmd(booter, $"stock ins {item.Id} test");
-        // AssertStockCount(uow, 1);
-        // var data = GetStock(uow, elementIndex: 0);
-        // AssertStock(
-        //     new Stock 
-        //     { 
-        //         ItemId = item.Id
-        //         , Description = "test"
-        //     }
-        //     , data!);
     }
 
-    [Fact]
-    public void Test2()
+    [Theory]
+    [MemberData(nameof(JarData.Level2), MemberType= typeof(JarData))]
+    public void TestLevel2(params string[] cmd)
     {
-        //fixture.RunCmd(fixture.Booter, cmd);
-        //fixture.RunCmd(fixture.Booter, sizeCmd);
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
         var size = fixture.GetSize(fixture.Uow, elementIndex: 0);
-        //RunCmd(booter, $"item ins test test {category.Id} {size.Id}");
-        //var item = GetItem(uow, 0);
-        //RunCmd(booter, $"stock ins {item.Id} test");
-        // AssertStockCount(uow, 1);
-        // var data = GetStock(uow, elementIndex: 0);
-        // AssertStock(
-        //     new Stock 
-        //     { 
-        //         ItemId = item.Id
-        //         , Description = "test"
-        //     }
-        //     , data!);
+        var command = new List<string>(cmd);
+        command.Add(category.Id.ToString());
+        command.Add($"-s");
+        command.Add(size.Id.ToString());
+        fixture.RunCmd(fixture.Booter, command.ToArray());
+        var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
     }
 }

@@ -11,12 +11,12 @@ public class ItemCommands
 {
     private const string MainCommand = "item";
     private readonly IReadCommand<ItemReadArg> readCommand;
-    private readonly IInsertCommand<ItemInsertArg> insertCommand;
+    private readonly IInsertCommand<ItemInsertArgs> insertCommand;
     private readonly IUpdateCommand<ItemUpdateArg> updateCommand;
 
     public ItemCommands(
         IReadCommand<ItemReadArg> readCommand
-        , IInsertCommand<ItemInsertArg> insertCommand
+        , IInsertCommand<ItemInsertArgs> insertCommand
         , IUpdateCommand<ItemUpdateArg> updateCommand
         , IConfigReader config)
             : base(config)
@@ -36,7 +36,7 @@ public class ItemCommands
     }
 
     [Command(InsertCommand)]
-    public void Insert(ItemInsertArg model)
+    public void Insert(ItemInsertArgs model)
     {
         insertCommand.Insert(model);
         ReadAfterChange(GetReadTask());
