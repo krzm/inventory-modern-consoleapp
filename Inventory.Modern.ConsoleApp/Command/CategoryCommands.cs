@@ -11,12 +11,12 @@ public class CategoryCommands
 {
     protected const string MainCommand = "category";
     private readonly IReadCommand<CategoryArgFilter> readCommand;
-    private readonly IInsertCommand<CategoryArg> insertCommand;
+    private readonly IInsertCommand<CategoryInsertArgs> insertCommand;
     private readonly IUpdateCommand<CategoryArgUpdate> updateCommand;
 
     public CategoryCommands(
         IReadCommand<CategoryArgFilter> readCommand
-        , IInsertCommand<CategoryArg> insertCommand
+        , IInsertCommand<CategoryInsertArgs> insertCommand
         , IUpdateCommand<CategoryArgUpdate> updateCommand
         , IConfigReader config)
             : base(config)
@@ -36,7 +36,7 @@ public class CategoryCommands
     }
 
     [Command(InsertCommand)]
-    public void Insert(CategoryArg model)
+    public void Insert(CategoryInsertArgs model)
     {
         insertCommand.Insert(model);
         ReadAfterChange(GetReadTask());
