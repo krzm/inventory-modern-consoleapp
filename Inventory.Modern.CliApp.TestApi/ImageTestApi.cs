@@ -19,7 +19,7 @@ public abstract class ImageTestApi
         Assert.True(GetCategories(repo)?.Count() == count);
     }
 
-    protected static Image GetImage(
+    public Image GetImage(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {

@@ -10,12 +10,12 @@ public class SizeCommands : InventoryCommands
 {
     protected const string MainCommand = "size";
     private readonly IReadCommand<SizeArgFilter> readCommand;
-    private readonly IInsertCommand<SizeArgs> insertCommand;
+    private readonly IInsertCommand<SizeInsertArgs> insertCommand;
     private readonly IUpdateCommand<SizeArgUpdate> updateCommand;
 
     public SizeCommands(
         IReadCommand<SizeArgFilter> readCommand
-        , IInsertCommand<SizeArgs> insertCommand
+        , IInsertCommand<SizeInsertArgs> insertCommand
         , IUpdateCommand<SizeArgUpdate> updateCommand
         , IConfigReader config)
             : base(config)
@@ -35,7 +35,7 @@ public class SizeCommands : InventoryCommands
     }
 
     [Command(InsertCommand)]
-    public void Insert(SizeArgs model)
+    public void Insert(SizeInsertArgs model)
     {
         insertCommand.Insert(model);
         ReadAfterChange(GetReadTask());

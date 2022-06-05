@@ -11,12 +11,12 @@ public class ImageCommands
 {
     protected const string MainCommand = "itemimage";
     private readonly IReadCommand<ImageArgFilter> readCommand;
-    private readonly IInsertCommand<ImageArg> insertCommand;
+    private readonly IInsertCommand<ImageInsertArgs> insertCommand;
     private readonly IUpdateCommand<ImageArgUpdate> updateCommand;
 
     public ImageCommands(
         IReadCommand<ImageArgFilter> readCommand
-        , IInsertCommand<ImageArg> insertCommand
+        , IInsertCommand<ImageInsertArgs> insertCommand
         , IUpdateCommand<ImageArgUpdate> updateCommand
         , IConfigReader config)
             : base(config)
@@ -36,7 +36,7 @@ public class ImageCommands
     }
 
     [Command(InsertCommand)]
-    public void Insert(ImageArg model)
+    public void Insert(ImageInsertArgs model)
     {
         insertCommand.Insert(model);
         ReadAfterChange(GetReadTask());
