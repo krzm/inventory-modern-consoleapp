@@ -44,6 +44,27 @@ public class JarInsertTests
         var image = fixture.GetImage(fixture.Uow, elementIndex: 0);
     }
 
+    [Theory]
+    [MemberData(nameof(JarData.Level4), MemberType= typeof(JarData))]
+    public void TestLevel4(params string[] cmd)
+    {
+        var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
+        var command = new List<string>(cmd);
+        SetValue(command, "itemid", item.Id.ToString());
+        fixture.RunCmd(fixture.Booter, command.ToArray());
+    }
+
+    [Theory]
+    [MemberData(nameof(JarData.Level5), MemberType= typeof(JarData))]
+    public void TestLevel5(params string[] cmd)
+    {
+        var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
+        var command = new List<string>(cmd);
+        SetValue(command, "stockid", stock.Id.ToString());
+        fixture.RunCmd(fixture.Booter, command.ToArray());
+        var stockcount = fixture.GetStockCount(fixture.Uow, elementIndex: 0);
+    }
+
     private int GetIndex(List<string> cmd, string value)
     {
         return cmd.IndexOf(value);

@@ -11,12 +11,12 @@ public class StockCommands
 {
     protected const string MainCommand = "stock";
     private readonly IReadCommand<StockArgFilter> readCommand;
-    private readonly IInsertCommand<StockArg> insertCommand;
+    private readonly IInsertCommand<StockInsertArgs> insertCommand;
     private readonly IUpdateCommand<StockArgUpdate> updateCommand;
 
     public StockCommands(
         IReadCommand<StockArgFilter> readCommand
-        , IInsertCommand<StockArg> insertCommand
+        , IInsertCommand<StockInsertArgs> insertCommand
         , IUpdateCommand<StockArgUpdate> updateCommand
         , IConfigReader config)
             : base(config)
@@ -36,7 +36,7 @@ public class StockCommands
     }
 
     [Command(InsertCommand)]
-    public void Insert(StockArg model)
+    public void Insert(StockInsertArgs model)
     {
         insertCommand.Insert(model);
         ReadAfterChange(GetReadTask());

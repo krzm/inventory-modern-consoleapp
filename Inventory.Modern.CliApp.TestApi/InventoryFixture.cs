@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore.Storage;
 namespace Inventory.Modern.CliApp.TestApi;
 
 public class InventoryFixture
-    : StockTestApi
-        ,IDisposable
+    : StockCountTestApi
+        , IDisposable
 {
     public InventoryFixture()
     {

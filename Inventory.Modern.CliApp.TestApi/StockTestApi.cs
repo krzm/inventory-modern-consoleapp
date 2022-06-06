@@ -19,7 +19,7 @@ public abstract class StockTestApi
         Assert.True(GetStocks(repo)?.Count() == count);
     }
 
-    protected static Stock GetStock(
+    public Stock GetStock(
         IInventoryUnitOfWork? repo
         , int elementIndex)
     {

@@ -12,12 +12,24 @@ public class JarData
     public static IEnumerable<object[]> Level2 =>
         new List<object[]>
         {
-            new object[] { "item", "ins", "Jar 0.9l", "-d", "Biggest jar size in my jar collection", "categoryid", "-s", "sizeid"}
+            new object[] { "item", "ins", "Jar 0.9l", "-d", "Biggest jar size in my jar collection", "categoryid", "-s", "sizeid" }
         };
 
     public static IEnumerable<object[]> Level3 =>
         new List<object[]>
         {
-            new object[] { "itemimage", "ins", "itemid", @"C:\kmazanek@gmail.com\Image\Inventory\BigJar.jpg", "-d", "Big Jar foto"}
+            new object[] { "itemimage", "ins", "itemid", @"C:\kmazanek@gmail.com\Image\Inventory\BigJar.jpg", "-d", "Big Jar foto" }
+        };
+    
+    public static IEnumerable<object[]> Level4 =>
+        new List<object[]>
+        {
+            new object[] { "stock", "ins", "itemid", "-d", "Collection of empty big jars" }
+        };
+    
+    public static IEnumerable<object[]> Level5 =>
+        new List<object[]>
+        {
+            new object[] { "stockcount", "ins", "stockid", "22", "-d", "All empty" }
         };
 }
