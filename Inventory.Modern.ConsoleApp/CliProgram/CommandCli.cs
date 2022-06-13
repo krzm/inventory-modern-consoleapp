@@ -12,6 +12,9 @@ public class CommandCli
     public ItemCommands? ItemCommands { get; set; }
 
     [Subcommand]
+    public ContainerCommands? ContainerCommands { get; set; }
+
+    [Subcommand]
     public CategoryCommands? CategoryCommands { get; set; }
 
     [Subcommand]

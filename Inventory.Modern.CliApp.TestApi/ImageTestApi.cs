@@ -4,7 +4,7 @@ using Xunit;
 namespace Inventory.Modern.CliApp.TestApi;
 
 public abstract class ImageTestApi
-    : ItemTestApi
+    : ContainerTestApi
 {
     protected static IEnumerable<Image>? GetImages(
         IInventoryUnitOfWork? unitOfWork)

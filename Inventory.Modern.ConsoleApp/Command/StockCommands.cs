@@ -13,11 +13,13 @@ public class StockCommands
     private readonly IReadCommand<StockArgFilter> readCommand;
     private readonly IInsertCommand<StockInsertArgs> insertCommand;
     private readonly IUpdateCommand<StockArgUpdate> updateCommand;
+    private readonly IStockContainerInsertCommand stockContainerInsertCommand;
 
     public StockCommands(
         IReadCommand<StockArgFilter> readCommand
         , IInsertCommand<StockInsertArgs> insertCommand
         , IUpdateCommand<StockArgUpdate> updateCommand
+        , IStockContainerInsertCommand stockContainerInsertCommand
         , IConfigReader config)
             : base(config)
     {
@@ -27,6 +29,8 @@ public class StockCommands
         ArgumentNullException.ThrowIfNull(this.insertCommand);
         this.updateCommand = updateCommand;
         ArgumentNullException.ThrowIfNull(this.updateCommand);
+        this.stockContainerInsertCommand = stockContainerInsertCommand;
+        ArgumentNullException.ThrowIfNull(this.stockContainerInsertCommand);
     }
 
     [DefaultCommand()]
@@ -39,6 +43,13 @@ public class StockCommands
     public void Insert(StockInsertArgs model)
     {
         insertCommand.Insert(model);
+        ReadAfterChange(GetReadTask());
+    }
+
+    [Command("addcontainer")]
+    public void InsertStockContainer(StockContainerInsertArgs model)
+    {
+        stockContainerInsertCommand.Insert(model.StockId, model.ContainerId);
         ReadAfterChange(GetReadTask());
     }
 

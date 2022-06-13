@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Inventory.Modern.CliApp.TestApi;
 
-public class InventoryFixture
+public class InventoryNoDataFixture
     : StockCountTestApi
         , IDisposable
 {
-    public InventoryFixture()
+    public InventoryNoDataFixture()
     {
         Booter = GetBooter();
         Uow = GetUnitOfWork(Booter);

@@ -32,4 +32,28 @@ public class JarData
         {
             new object[] { "stockcount", "ins", "stockid", "22", "-d", "All empty" }
         };
+
+    public static IEnumerable<object[]> Level6 =>
+        new List<object[]>
+        {
+            new object[] { "category", "ins", "Furniture", "Big storage units" }
+        };
+    
+    public static IEnumerable<object[]> Level7 =>
+        new List<object[]>
+        {
+            new object[] { "container", "ins", "Storage Cabinet", "categoryid" }
+        };
+    
+    public static IEnumerable<object[]> Level8 =>
+        new List<object[]>
+        {
+            new object[] { "container", "ins", "Shelf X", "categoryid", "-p", "parentid" }
+        };
+
+    public static IEnumerable<object[]> Level9 =>
+        new List<object[]>
+        {
+            new object[] { "stock", "addcontainer", "stockid", "containerid" }
+        };
 }
