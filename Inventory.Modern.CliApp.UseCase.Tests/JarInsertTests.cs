@@ -106,6 +106,31 @@ public class JarInsertTests
         fixture.RunCmd(fixture.Booter, command.ToArray());
     }
 
+    [Fact]
+    public void TestLevel9b()
+    {
+        var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
+        Assert.True(stock.Containers?.ElementAt(0).Name == "Shelf X");
+        Assert.True(stock.Containers?.ElementAt(0).Parent?.Name == "Storage Cabinet");
+    }
+
+    [Theory]
+    [MemberData(nameof(JarData.Level10), MemberType= typeof(JarData))]
+    public void TestLevel10(params string[] cmd)
+    {
+        var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
+        var command = new List<string>(cmd);
+        SetValue(command, "categoryid", category.Id.ToString());
+        fixture.RunCmd(fixture.Booter, command.ToArray());
+    }
+
+    [Fact]
+    public void TestLevel10b()
+    {
+        var state = fixture.GetState(fixture.Uow, elementIndex: 0);
+        Assert.True(state.Name == "Empty");
+    }
+
     private int GetIndex(List<string> cmd, string value)
     {
         return cmd.IndexOf(value);

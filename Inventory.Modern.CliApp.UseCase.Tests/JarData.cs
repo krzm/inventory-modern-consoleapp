@@ -56,4 +56,10 @@ public class JarData
         {
             new object[] { "stock", "addcontainer", "stockid", "containerid" }
         };
+    
+    public static IEnumerable<object[]> Level10 =>
+        new List<object[]>
+        {
+            new object[] { "state", "ins", "Empty", "categoryid" }
+        };
 }

@@ -29,6 +29,9 @@ public class CommandCli
     [Subcommand]
     public StockCountCommands? StockCountCommands { get; set; }
 
+    [Subcommand]
+    public StateCommands? StateCommands { get; set; }
+
     public CommandCli(
         ILogger log
         , IConfigReader config) 

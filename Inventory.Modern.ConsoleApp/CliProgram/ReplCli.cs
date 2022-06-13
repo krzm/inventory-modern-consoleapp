@@ -26,6 +26,12 @@ public class ReplCli
     [Subcommand]
     public StockCommands? StockCommands { get; set; }
 
+    [Subcommand]
+    public StockCountCommands? StockCountCommands { get; set; }
+
+    [Subcommand]
+    public StateCommands? StateCommands { get; set; }
+    
     public ReplCli(
         ILogger log
         , IConfigReader config) 

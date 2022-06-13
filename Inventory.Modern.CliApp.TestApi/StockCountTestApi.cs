@@ -4,7 +4,7 @@ using Xunit;
 namespace Inventory.Modern.CliApp.TestApi;
 
 public abstract class StockCountTestApi
-    : StockTestApi
+    : StateTestApi
 {
     protected static IEnumerable<StockCount>? GetStockCounts(
         IInventoryUnitOfWork? unitOfWork)
