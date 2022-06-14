@@ -15,15 +15,15 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level1), MemberType= typeof(JarData))]
-    public void TestLevel1(params string[] cmd)
+    [MemberData(nameof(JarData.Test01), MemberType= typeof(JarData))]
+    public void Test01(params string[] cmd)
     {
         fixture.RunCmd(fixture.Booter, cmd);
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level2), MemberType= typeof(JarData))]
-    public void TestLevel2(params string[] cmd)
+    [MemberData(nameof(JarData.Test02), MemberType= typeof(JarData))]
+    public void Test02(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
         var size = fixture.GetSize(fixture.Uow, elementIndex: 0);
@@ -34,8 +34,8 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level3), MemberType= typeof(JarData))]
-    public void TestLevel3(params string[] cmd)
+    [MemberData(nameof(JarData.Test03), MemberType= typeof(JarData))]
+    public void Test03(params string[] cmd)
     {
         var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
         var command = new List<string>(cmd);
@@ -45,8 +45,8 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level4), MemberType= typeof(JarData))]
-    public void TestLevel4(params string[] cmd)
+    [MemberData(nameof(JarData.Test04), MemberType= typeof(JarData))]
+    public void Test04(params string[] cmd)
     {
         var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
         var command = new List<string>(cmd);
@@ -55,8 +55,8 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level5), MemberType= typeof(JarData))]
-    public void TestLevel5(params string[] cmd)
+    [MemberData(nameof(JarData.Test05), MemberType= typeof(JarData))]
+    public void Test05(params string[] cmd)
     {
         var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
         var command = new List<string>(cmd);
@@ -66,15 +66,15 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level6), MemberType= typeof(JarData))]
-    public void TestLevel6(params string[] cmd)
+    [MemberData(nameof(JarData.Test06), MemberType= typeof(JarData))]
+    public void Test06(params string[] cmd)
     {
         fixture.RunCmd(fixture.Booter, cmd);
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level7), MemberType= typeof(JarData))]
-    public void TestLevel7(params string[] cmd)
+    [MemberData(nameof(JarData.Test07), MemberType= typeof(JarData))]
+    public void Test07(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 1);
         var command = new List<string>(cmd);
@@ -83,8 +83,8 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level8), MemberType= typeof(JarData))]
-    public void TestLevel8(params string[] cmd)
+    [MemberData(nameof(JarData.Test08), MemberType= typeof(JarData))]
+    public void Test08(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 1);
         var container = fixture.GetContainer(fixture.Uow, elementIndex: 0);
@@ -95,8 +95,8 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level9), MemberType= typeof(JarData))]
-    public void TestLevel9(params string[] cmd)
+    [MemberData(nameof(JarData.Test09), MemberType= typeof(JarData))]
+    public void Test09(params string[] cmd)
     {
         var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
         var container = fixture.GetContainer(fixture.Uow, elementIndex: 1);
@@ -107,7 +107,7 @@ public class JarInsertTests
     }
 
     [Fact]
-    public void TestLevel9b()
+    public void Test10()
     {
         var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
         Assert.True(stock.Containers?.ElementAt(0).Name == "Shelf X");
@@ -115,8 +115,8 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Level10), MemberType= typeof(JarData))]
-    public void TestLevel10(params string[] cmd)
+    [MemberData(nameof(JarData.Test11), MemberType= typeof(JarData))]
+    public void Test11(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
         var command = new List<string>(cmd);
@@ -125,10 +125,31 @@ public class JarInsertTests
     }
 
     [Fact]
-    public void TestLevel10b()
+    public void Test12()
     {
         var state = fixture.GetState(fixture.Uow, elementIndex: 0);
-        Assert.True(state.Name == "Empty");
+        Assert.True(state.Name == "ToDo");
+        Assert.True(state.Description == "Sort lids");
+    }
+
+    [Theory]
+    [MemberData(nameof(JarData.Test13), MemberType= typeof(JarData))]
+    public void Test13(params string[] cmd)
+    {
+        var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
+        var state = fixture.GetState(fixture.Uow, elementIndex: 0);
+        var command = new List<string>(cmd);
+        SetValue(command, "stockid", stock.Id.ToString());
+        SetValue(command, "stateid", state.Id.ToString());
+        fixture.RunCmd(fixture.Booter, command.ToArray());
+    }
+
+    [Fact]
+    public void Test14()
+    {
+        var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
+        Assert.True(stock.States?.ElementAt(0).Name == "ToDo");
+        Assert.True(stock.States?.ElementAt(0).Description == "Sort lids");
     }
 
     private int GetIndex(List<string> cmd, string value)
