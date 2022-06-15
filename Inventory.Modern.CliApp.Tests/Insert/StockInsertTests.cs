@@ -17,13 +17,13 @@ public class StockInsertTests
         try
         {
             AssertStockCount(uow, 0);
-            RunCmd(booter, "category ins test test");
-            RunCmd(booter, "size ins 1 1 1");
+            RunCmd(booter, "category", "ins", "test", "test");
+            RunCmd(booter, "size", "ins", "1", "2", "-l", "1", "-e", "1", "-d", "1");
             var category = GetCategory(uow, elementIndex: 0);
             var size = GetSize(uow, elementIndex: 0);
-            RunCmd(booter, $"item ins test test {category.Id} {size.Id}");
+            RunCmd(booter, "item", "ins", "test", "-d", "test", category.Id.ToString(), "-s", size.Id.ToString());
             var item = GetItem(uow, 0);
-            RunCmd(booter, $"stock ins {item.Id} test");
+            RunCmd(booter, "stock", "ins", item.Id.ToString(), "-d", "test");
             AssertStockCount(uow, 1);
             var data = GetStock(uow, elementIndex: 0);
             AssertStock(

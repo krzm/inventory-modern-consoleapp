@@ -17,7 +17,7 @@ public class CategoryInsertTests
         try
         {
             AssertCategoryCount(uow, 0);
-            RunCmd(booter, "category ins test test");
+            RunCmd(booter, "category", "ins", "test", "test");
             AssertCategoryCount(uow, 1);
             var data = GetCategory(uow, elementIndex: 0);
             AssertCategory(
@@ -26,7 +26,7 @@ public class CategoryInsertTests
                     Name = "test"
                     , Description = "test"
                 }
-                , data!);
+                , data);
         }
         finally
         {

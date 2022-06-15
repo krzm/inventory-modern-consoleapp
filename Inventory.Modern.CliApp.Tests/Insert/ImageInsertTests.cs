@@ -17,14 +17,14 @@ public class ImageInsertTests
         try
         {
             AssertImageCount(uow, 0);
-            RunCmd(booter, "category ins test test");
-            RunCmd(booter, "size ins 1 1 1");
+            RunCmd(booter, "category", "ins", "test", "test");
+            RunCmd(booter, "size", "ins", "1", "2", "-l", "1", "-e", "1", "-d", "1");
             var category = GetCategory(uow, elementIndex: 0);
             var size = GetSize(uow, elementIndex: 0);
-            RunCmd(booter, $"item ins test test {category.Id} {size.Id}");
+            RunCmd(booter, "item", "ins", "test", "-d", "test", category.Id.ToString(), "-s", size.Id.ToString());
             var item = GetItem(uow, 0);
             var path = @"C:\kmazanek@gmail.com\Image\People\IMG_20210211_163337.jpg";
-            RunCmd(booter, $"itemimage ins {item.Id} {path}");
+            RunCmd(booter, "itemimage", "ins", item.Id.ToString(), path);
             AssertImageCount(uow, 1);
             var data = GetImage(uow, elementIndex: 0);
             AssertImage(
@@ -33,7 +33,7 @@ public class ImageInsertTests
                     Path = path
                     , ItemId = item.Id
                 }
-                , data!);
+                , data);
         }
         finally
         {

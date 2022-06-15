@@ -17,7 +17,7 @@ public class SizeInsertTests
         try
         {
             AssertSizeCount(uow, 0);
-            RunCmd(booter, "size ins 1 1 1");
+            RunCmd(booter, "size", "ins", "1", "2", "-l", "1", "-e", "1", "-d", "1");
             AssertSizeCount(uow, 1);
             var data = GetSize(uow, elementIndex: 0);
             AssertSize(
