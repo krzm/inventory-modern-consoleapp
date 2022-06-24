@@ -16,7 +16,7 @@ public abstract class ImageTestApi
         IInventoryUnitOfWork? repo
         , int count)
     {
-        Assert.True(GetCategories(repo)?.Count() == count);
+        Assert.True(GetImages(repo)?.Count() == count);
     }
 
     public Image GetImage(

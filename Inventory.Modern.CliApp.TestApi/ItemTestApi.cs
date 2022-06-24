@@ -12,7 +12,7 @@ public abstract class ItemTestApi
         return unitOfWork?.Item?.Get();
     }
 
-    protected static void AssertItemCount(
+    public void AssertItemCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
@@ -28,7 +28,7 @@ public abstract class ItemTestApi
         return data;
     }
 
-    protected static void AssertItem(
+    public void AssertItem(
         Item expected
         , Item acctual)
     {

@@ -15,22 +15,16 @@ public class ImageInsertTests
         this.fixture = fixture;
     }
 
-    [Fact]
-    public void Test01()
-    {
-        fixture.AssertImageCount(fixture.Uow, 0);
-    }
-
     [Theory]
-    [MemberData(nameof(ImageInsertData.Test02), MemberType= typeof(ImageInsertData))]
-    public void Test02(params string[] cmd)
+    [MemberData(nameof(ImageInsertData.Test01), MemberType= typeof(ImageInsertData))]
+    public void Test01(params string[] cmd)
     {
         fixture.RunCmd(fixture.Booter, cmd);
     }
 
     [Theory]
-    [MemberData(nameof(ImageInsertData.Test03), MemberType= typeof(ImageInsertData))]
-    public void Test03(params string[] cmd)
+    [MemberData(nameof(ImageInsertData.Test02), MemberType= typeof(ImageInsertData))]
+    public void Test02(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
         var command = new List<string>(cmd);
@@ -39,21 +33,16 @@ public class ImageInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(ImageInsertData.Test04), MemberType= typeof(ImageInsertData))]
-    public void Test04(params string[] cmd)
+    [MemberData(nameof(ImageInsertData.Test03), MemberType= typeof(ImageInsertData))]
+    public void Test03(params string[] cmd)
     {
+        fixture.AssertImageCount(fixture.Uow, 0);
         var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
         var command = new List<string>(cmd);
         SetValue(command, "itemid", item.Id.ToString());
         fixture.RunCmd(fixture.Booter, command.ToArray());
-    }
-
-    [Fact]
-    public void Test05()
-    {
         fixture.AssertImageCount( fixture.Uow, 1);
         var data =  fixture.GetImage( fixture.Uow, elementIndex: 0);
-        var item = fixture.GetItem(fixture.Uow, 0);
         var path = @"C:\kmazanek@gmail.com\Image\People\IMG_20210211_163337.jpg";
         fixture.AssertImage(
             new Image 
