@@ -5,11 +5,11 @@ namespace Inventory.Modern.CliApp.UseCase.Tests;
 
 [TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class JarInsertTests
-    : IClassFixture<InventoryNoDataFixture>
+    : IClassFixture<InventoryFixture>
 {
-    private InventoryNoDataFixture fixture;
+    private InventoryFixture fixture;
 
-    public JarInsertTests(InventoryNoDataFixture fixture)
+    public JarInsertTests(InventoryFixture fixture)
     {
         this.fixture = fixture;
     }

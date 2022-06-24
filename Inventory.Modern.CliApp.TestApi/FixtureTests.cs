@@ -4,11 +4,11 @@ namespace Inventory.Modern.CliApp.TestApi;
 
 [TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class FixtureTests
-    : IClassFixture<InventoryNoDataFixture>
+    : IClassFixture<InventoryFixture>
 {
-    private InventoryNoDataFixture fixture;
+    private InventoryFixture fixture;
 
-    public FixtureTests(InventoryNoDataFixture fixture)
+    public FixtureTests(InventoryFixture fixture)
     {
         this.fixture = fixture;
     }

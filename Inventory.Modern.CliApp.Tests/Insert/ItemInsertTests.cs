@@ -6,11 +6,11 @@ namespace Inventory.Modern.CliApp.Tests;
 
 [TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class ItemInsertTests
-    : IClassFixture<InventoryNoDataFixture>
+    : IClassFixture<InventoryFixture>
 {
-    private InventoryNoDataFixture fixture;
+    private InventoryFixture fixture;
 
-    public ItemInsertTests(InventoryNoDataFixture fixture)
+    public ItemInsertTests(InventoryFixture fixture)
     {
         this.fixture = fixture;
     }
