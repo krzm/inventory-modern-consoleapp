@@ -12,7 +12,7 @@ public abstract class ImageTestApi
         return unitOfWork?.Image?.Get();
     }
 
-    protected static void AssertImageCount(
+    public void AssertImageCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
@@ -28,7 +28,7 @@ public abstract class ImageTestApi
         return data;
     }
 
-    protected static void AssertImage(
+    public void AssertImage(
         Image expected
         , Image acctual)
     {
