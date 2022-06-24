@@ -1,4 +1,4 @@
-namespace Inventory.Modern.CliApp.Tests;
+namespace Inventory.Modern.CliApp.Tests.Insert.Data;
 
 public class ItemInsertData
 {
@@ -8,7 +8,7 @@ public class ItemInsertData
             new object[] { "category", "ins", "test", "test" }
             , new object[] { "size", "ins", "1", "2", "-l", "1", "-e", "1", "-d", "1" }
         };
-    
+
     public static IEnumerable<object[]> Test02 =>
         new List<object[]>
         {

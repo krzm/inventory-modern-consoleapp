@@ -16,19 +16,19 @@ public class InventoryFixture
 
     public bool KeepData { get; set; } = false;
 
-    public static int Id { get; set; } = 0;
+    public Guid FixtureId { get; private set; }
 
     public InventoryFixture()
     {
         Booter = GetBooter();
         Uow = GetUnitOfWork(Booter);
         Transaction = Uow.BeginTransaction();
-        Id++;
+        FixtureId = Guid.NewGuid();
     }
 
     public void Dispose()
     {
-        if(KeepData)
+        if(KeepData == false)
             Transaction.Rollback();
         else
             Transaction.Commit();

@@ -2,6 +2,7 @@ using Xunit;
 
 namespace Inventory.Modern.CliApp.TestApi;
 
+[Collection("Serial1")]
 [TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class FixtureTests
     : IClassFixture<InventoryFixture>

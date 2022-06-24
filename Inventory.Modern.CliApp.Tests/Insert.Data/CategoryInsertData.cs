@@ -1,4 +1,4 @@
-namespace Inventory.Modern.CliApp.Tests;
+namespace Inventory.Modern.CliApp.Tests.Insert.Data;
 
 public class CategoryInsertData
 {

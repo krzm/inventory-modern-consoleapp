@@ -1,6 +1,6 @@
 namespace Inventory.Modern.CliApp.UseCase.Tests;
 
-public class JarData
+public class JarDataEn
 {
     public static IEnumerable<object[]> Test01 =>
         new List<object[]>

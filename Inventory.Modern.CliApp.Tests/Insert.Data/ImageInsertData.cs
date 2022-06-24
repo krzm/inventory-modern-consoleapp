@@ -1,4 +1,4 @@
-namespace Inventory.Modern.CliApp.Tests;
+namespace Inventory.Modern.CliApp.Tests.Insert.Data;
 
 public class ImageInsertData
 {
@@ -9,7 +9,7 @@ public class ImageInsertData
         {
             new object[] { "category", "ins", "test", "test" }
         };
-    
+
     public static IEnumerable<object[]> Test02 =>
         new List<object[]>
         {

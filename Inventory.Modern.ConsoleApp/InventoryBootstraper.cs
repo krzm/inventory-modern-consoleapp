@@ -11,6 +11,7 @@ public class InventoryBootstraper
     private IBootstraper? booter;
 
     public IDependencySuite? Suite => suite;
+    public Guid AppId { get; private set; }
 
     public void CreateApp()
     {
@@ -23,6 +24,7 @@ public class InventoryBootstraper
                 .GetSuite(unity);
         booter = new Bootstraper(suite);
         booter.CreateApp();
+        AppId = Guid.NewGuid();
     }
 
     public void RunApp(params string[] args)

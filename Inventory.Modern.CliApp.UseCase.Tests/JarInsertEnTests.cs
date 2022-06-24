@@ -1,28 +1,30 @@
-using Inventory.Modern.CliApp.TestApi;
+﻿using Inventory.Modern.CliApp.TestApi;
 using Xunit;
 
 namespace Inventory.Modern.CliApp.UseCase.Tests;
 
+[Collection("Serial3")]
 [TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
-public class JarInsertTests
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "xUnit1000:Test classes must be public", Justification = "<Pending>")]
+class JarInsertEnTests
     : IClassFixture<InventoryFixture>
 {
     private InventoryFixture fixture;
 
-    public JarInsertTests(InventoryFixture fixture)
+    public JarInsertEnTests(InventoryFixture fixture)
     {
         this.fixture = fixture;
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test01), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test01), MemberType = typeof(JarDataEn))]
     public void Test01(params string[] cmd)
     {
         fixture.RunCmd(fixture.Booter, cmd);
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test02), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test02), MemberType = typeof(JarDataEn))]
     public void Test02(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
@@ -34,7 +36,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test03), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test03), MemberType = typeof(JarDataEn))]
     public void Test03(params string[] cmd)
     {
         var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
@@ -45,7 +47,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test04), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test04), MemberType = typeof(JarDataEn))]
     public void Test04(params string[] cmd)
     {
         var item = fixture.GetItem(fixture.Uow, elementIndex: 0);
@@ -55,7 +57,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test05), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test05), MemberType = typeof(JarDataEn))]
     public void Test05(params string[] cmd)
     {
         var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
@@ -66,14 +68,14 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test06), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test06), MemberType = typeof(JarDataEn))]
     public void Test06(params string[] cmd)
     {
         fixture.RunCmd(fixture.Booter, cmd);
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test07), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test07), MemberType = typeof(JarDataEn))]
     public void Test07(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 1);
@@ -83,7 +85,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test08), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test08), MemberType = typeof(JarDataEn))]
     public void Test08(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 1);
@@ -95,7 +97,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test09), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test09), MemberType = typeof(JarDataEn))]
     public void Test09(params string[] cmd)
     {
         var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);
@@ -115,7 +117,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test11), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test11), MemberType = typeof(JarDataEn))]
     public void Test11(params string[] cmd)
     {
         var category = fixture.GetCategory(fixture.Uow, elementIndex: 0);
@@ -133,7 +135,7 @@ public class JarInsertTests
     }
 
     [Theory]
-    [MemberData(nameof(JarData.Test13), MemberType= typeof(JarData))]
+    [MemberData(nameof(JarDataEn.Test13), MemberType = typeof(JarDataEn))]
     public void Test13(params string[] cmd)
     {
         var stock = fixture.GetStock(fixture.Uow, elementIndex: 0);

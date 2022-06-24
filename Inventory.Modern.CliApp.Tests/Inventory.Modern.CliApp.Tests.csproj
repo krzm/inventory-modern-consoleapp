@@ -7,8 +7,8 @@
         <IsPublishable>false</IsPublishable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.0-preview-20220612-01"/>
-		<PackageReference Include="xunit" Version="2.4.2-pre.12"/>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.0-preview-20220612-01" />
+		<PackageReference Include="xunit" Version="2.4.2-pre.12" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 			<PrivateAssets>all</PrivateAssets>
@@ -24,8 +24,8 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Inventory.Modern.ConsoleApp\Inventory.Modern.ConsoleApp.csproj"/>
-		<ProjectReference Include="..\Inventory.Modern.CliApp.TestApi\Inventory.Modern.CliApp.TestApi.csproj"/>
+		<ProjectReference Include="..\Inventory.Modern.ConsoleApp\Inventory.Modern.ConsoleApp.csproj" />
+		<ProjectReference Include="..\Inventory.Modern.CliApp.TestApi\Inventory.Modern.CliApp.TestApi.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="EFCore.Helper">

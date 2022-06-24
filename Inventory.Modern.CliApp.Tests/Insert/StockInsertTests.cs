@@ -1,9 +1,11 @@
 using Inventory.Data;
 using Inventory.Modern.CliApp.TestApi;
+using Inventory.Modern.CliApp.Tests.Insert.Data;
 using Xunit;
 
 namespace Inventory.Modern.CliApp.Tests;
 
+[Collection("Serial2")]
 [TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class StockInsertTests
     : IClassFixture<InventoryFixture>
