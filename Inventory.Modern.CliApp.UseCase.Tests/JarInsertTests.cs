@@ -152,16 +152,16 @@ public class JarInsertTests
         Assert.True(stock.States?.ElementAt(0).Description == "Sort lids");
     }
 
-    private int GetIndex(List<string> cmd, string value)
-    {
-        return cmd.IndexOf(value);
-    }
-
     private void SetValue(
         List<string> cmd
         , string key
         , string value)
     {
         cmd[GetIndex(cmd, key)] = value;
+    }
+
+    private int GetIndex(List<string> cmd, string value)
+    {
+        return cmd.IndexOf(value);
     }
 }

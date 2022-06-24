@@ -12,7 +12,7 @@ public abstract class StockTestApi
         return unitOfWork?.Stock?.Get();
     }
 
-    protected static void AssertStockCount(
+    public void AssertStockCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
@@ -28,7 +28,7 @@ public abstract class StockTestApi
         return data;
     }
 
-    protected static void AssertStock(
+    public void AssertStock(
         Stock expected
         , Stock acctual)
     {
