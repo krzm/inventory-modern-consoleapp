@@ -4,34 +4,32 @@ using Xunit;
 
 namespace Inventory.Modern.CliApp.Tests;
 
+[TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class SizeInsertTests
-    : SizeTestApi
+    : IClassFixture<InventoryNoDataFixture>
 {
-    [Fact]
-    public async void Test_Correct_Data_Insert()
-    {
-        var booter = GetBooter();
-        var uow = GetUnitOfWork(booter);
+    private InventoryNoDataFixture fixture;
 
-        var transaction = await uow.BeginTransactionAsync();
-        try
-        {
-            AssertSizeCount(uow, 0);
-            RunCmd(booter, "size", "ins", "1", "2", "-l", "1", "-e", "1", "-d", "1");
-            AssertSizeCount(uow, 1);
-            var data = GetSize(uow, elementIndex: 0);
-            AssertSize(
-                new Size 
-                { 
-                    Length = 1
-                    , Heigth = 1
-                    , Depth = 1
-                }
-                , data!);
-        }
-        finally
-        {
-            await transaction.RollbackAsync();
-        }
+    public SizeInsertTests(InventoryNoDataFixture fixture)
+    {
+        this.fixture = fixture;
+    }
+
+    [Theory]
+    [MemberData(nameof(SizeInsertData.Test01), MemberType= typeof(SizeInsertData))]
+    public void Test01(params string[] cmd)
+    {
+        fixture.AssertSizeCount(fixture.Uow, 0);
+        fixture.RunCmd(fixture.Booter, cmd);
+        fixture.AssertSizeCount(fixture.Uow, 1);
+        var data = fixture.GetSize(fixture.Uow, elementIndex: 0);
+        fixture.AssertSize(
+            new Size 
+            { 
+                Length = 1
+                , Heigth = 1
+                , Depth = 1
+            }
+            , data);
     }
 }

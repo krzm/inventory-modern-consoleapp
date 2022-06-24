@@ -12,7 +12,7 @@ public abstract class SizeTestApi
         return unitOfWork?.Size?.Get();
     }
 
-    protected static void AssertSizeCount(
+    public void AssertSizeCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
@@ -28,7 +28,7 @@ public abstract class SizeTestApi
         return data;
     }
 
-    protected static void AssertSize(
+    public void AssertSize(
         Size expected
         , Size acctual)
     {
