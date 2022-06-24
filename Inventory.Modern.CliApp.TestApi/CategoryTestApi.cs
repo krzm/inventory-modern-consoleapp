@@ -14,9 +14,10 @@ public abstract class CategoryTestApi
 
     public void AssertCategoryCount(
         IInventoryUnitOfWork? repo
-        , int count)
+        , int expected)
     {
-        Assert.True(GetCategories(repo)?.Count() == count);
+        var actual = GetCategories(repo)?.Count();
+        Assert.True(expected == actual);
     }
 
     public Category GetCategory(
