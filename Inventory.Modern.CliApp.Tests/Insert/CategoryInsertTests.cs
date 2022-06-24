@@ -4,33 +4,31 @@ using Xunit;
 
 namespace Inventory.Modern.CliApp.Tests;
 
+[TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
 public class CategoryInsertTests
-    : CategoryTestApi
+    : IClassFixture<InventoryNoDataFixture>
 {
-    [Fact]
-    public async void Test_Correct_Data_Insert()
-    {
-        var booter = GetBooter();
-        var uow = GetUnitOfWork(booter);
+    private InventoryNoDataFixture fixture;
 
-        var transaction = await uow.BeginTransactionAsync();
-        try
-        {
-            AssertCategoryCount(uow, 0);
-            RunCmd(booter, "category", "ins", "test", "test");
-            AssertCategoryCount(uow, 1);
-            var data = GetCategory(uow, elementIndex: 0);
-            AssertCategory(
-                new Category 
-                { 
-                    Name = "test"
-                    , Description = "test"
-                }
-                , data);
-        }
-        finally
-        {
-            await transaction.RollbackAsync();
-        }
+    public CategoryInsertTests(InventoryNoDataFixture fixture)
+    {
+        this.fixture = fixture;
+    }
+
+    [Theory]
+    [MemberData(nameof(CategoryInsertData.Test01), MemberType= typeof(CategoryInsertData))]
+    public void Test01(params string[] cmd)
+    {
+        fixture.AssertCategoryCount(fixture.Uow, 0);
+        fixture.RunCmd(fixture.Booter, cmd);
+        fixture.AssertCategoryCount(fixture.Uow, 1);
+        var data = fixture.GetCategory(fixture.Uow, elementIndex: 0);
+        fixture.AssertCategory(
+            new Category 
+            { 
+                Name = "test"
+                , Description = "test"
+            }
+            , data);
     }
 }

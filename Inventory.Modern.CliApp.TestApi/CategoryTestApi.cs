@@ -12,7 +12,7 @@ public abstract class CategoryTestApi
         return unitOfWork?.Category?.Get();
     }
 
-    protected static void AssertCategoryCount(
+    public void AssertCategoryCount(
         IInventoryUnitOfWork? repo
         , int count)
     {
@@ -28,7 +28,7 @@ public abstract class CategoryTestApi
         return data;
     }
 
-    protected static void AssertCategory(
+    public void AssertCategory(
         Category expected
         , Category acctual)
     {
