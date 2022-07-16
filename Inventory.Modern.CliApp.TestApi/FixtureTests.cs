@@ -1,11 +1,13 @@
 using Xunit;
+using XUnit.Helper;
 
 namespace Inventory.Modern.CliApp.TestApi;
 
 [Collection("Serial1")]
-[TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
+[TestCaseOrderer(OrdererTypeName, OrdererAssemblyName)]
 public class FixtureTests
-    : IClassFixture<InventoryFixture>
+    : OrderTest
+    , IClassFixture<InventoryFixture>
 {
     private InventoryFixture fixture;
 
@@ -16,6 +18,16 @@ public class FixtureTests
 
     [Fact]
     public void Test01()
+    {
+        fixture.AssertCategoryCount(fixture.Uow, 0);
+        fixture.AssertImageCount(fixture.Uow, 0);
+        fixture.AssertItemCount(fixture.Uow, 0);
+        fixture.AssertSizeCount(fixture.Uow, 0);
+        fixture.AssertStockCount(fixture.Uow, 0);
+    }
+
+    [Fact]
+    public void Test02()
     {
         fixture.AssertCategoryCount(fixture.Uow, 0);
         fixture.AssertImageCount(fixture.Uow, 0);

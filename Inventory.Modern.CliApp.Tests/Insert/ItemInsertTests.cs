@@ -2,13 +2,15 @@ using Inventory.Data;
 using Inventory.Modern.CliApp.TestApi;
 using Inventory.Modern.CliApp.Tests.Insert.Data;
 using Xunit;
+using XUnit.Helper;
 
 namespace Inventory.Modern.CliApp.Tests;
 
 [Collection("Serial2")]
-[TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
+[TestCaseOrderer(OrdererTypeName, OrdererAssemblyName)]
 public class ItemInsertTests
-    : IClassFixture<InventoryFixture>
+    : OrderTest
+    , IClassFixture<InventoryFixture>
 {
     private InventoryFixture fixture;
 

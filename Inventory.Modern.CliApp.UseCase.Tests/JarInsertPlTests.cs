@@ -1,12 +1,15 @@
 using Inventory.Modern.CliApp.TestApi;
 using Xunit;
+using XUnit.Helper;
 
 namespace Inventory.Modern.CliApp.UseCase.Tests;
 
 [Collection("Serial3")]
-[TestCaseOrderer("Inventory.Modern.CliApp.TestApi.AlphabeticalOrderer", "Inventory.Modern.CliApp.TestApi")]
-public class JarInsertPlTests
-    : IClassFixture<InventoryFixture>
+[TestCaseOrderer(OrdererTypeName, OrdererAssemblyName)]
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "xUnit1000:Test classes must be public", Justification = "<This works on desktop but not on laptop due to difrent language setup in VSCode>")]
+class JarInsertPlTests
+    : OrderTest 
+    , IClassFixture<InventoryFixture>
 {
     private InventoryFixture fixture;
 

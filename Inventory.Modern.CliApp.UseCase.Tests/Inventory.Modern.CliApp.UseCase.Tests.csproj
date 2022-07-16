@@ -28,6 +28,9 @@
 		<ProjectReference Include="..\Inventory.Modern.CliApp.TestApi\Inventory.Modern.CliApp.TestApi.csproj"/>
 	</ItemGroup>
 	<ItemGroup>
+        <Reference Include="XUnit.Helper">
+			<HintPath>..\..\xunit-helper\XUnit.Helper\bin\Debug\net6.0\XUnit.Helper.dll</HintPath>
+		</Reference>
 		<Reference Include="EFCore.Helper">
 			<HintPath>..\..\efcore-helper\EFCore.Helper\bin\Debug\net6.0\EFCore.Helper.dll</HintPath>
 		</Reference>
