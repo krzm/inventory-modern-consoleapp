@@ -1,6 +1,7 @@
 using Config.Wrapper;
 using DIHelper;
 using Unity;
+using ServiceSuite = Serilog.Wrapper.ServiceSuite;
 
 namespace Inventory.Modern.ConsoleApp;
 
